@@ -4,6 +4,20 @@
 
 Impian is a Windows desktop planner for turning dreams into goals, small actions and time in your calendar.
 
+## Download the Windows app
+
+**[Download Impian for Windows (ZIP, about 75 MB)](https://github.com/mda15nbb/Impian/releases/download/v0.3.0/Impian-win-x64.zip)**
+
+1. Download the ZIP using the link above.
+2. Right-click the downloaded file and choose **Extract All**.
+3. Open the extracted folder and double-click **Impian.exe**. Keep the files together.
+
+For Windows 10/11 on a 64-bit Intel or AMD computer. No GitHub account, coding knowledge or separate .NET installation is needed. Choose the **Impian-win-x64.zip** download; GitHub's automatically listed **Source code** ZIP is not the application.
+
+This is an **early preview**. Offline planning works now. Online login, Google backups and ChatGPT AI still need service setup or real-account verification. The build is unsigned, so Windows may show an unfamiliar-app warning. [Read the release notes](https://github.com/mda15nbb/Impian/releases/tag/v0.3.0).
+
+To share the software, send your friend this page or the download link above.
+
 ## Start here
 
 - **[Read the user guide](docs/USER-GUIDE.md)** — everyday instructions in plain English.
@@ -27,6 +41,7 @@ Local planning works without signing in. Account login does not provide continuo
 
 ## What is public here?
 
-This folder contains documentation and public setup templates. It does not contain personal planner data, passwords, sign-in tokens or backups. The Windows download and complete app source are separate deliveries; this documentation upload does not publish them.
+This project provides the Windows preview download, documentation and public setup templates. The app download contains no personal planner data, passwords, sign-in tokens or backups. The full application source has not been published in this documentation repository.
 
 The exact tagline is **I'm the possibility of my dream**.
+
