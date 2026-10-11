@@ -1,0 +1,46 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Windows verification</title><style>
+  :root{color-scheme:light}*{box-sizing:border-box}body{margin:0;background:#f5f7f2;color:#293b32;font:17px/1.7 "Segoe UI",system-ui,sans-serif}header{background:#293b32;color:#fafaf8;padding:24px max(24px,calc((100vw - 940px)/2))}header strong{font-size:28px;letter-spacing:-1px}header small{display:block;color:#e0e8dc}nav{margin-top:14px;display:flex;gap:20px;flex-wrap:wrap}nav a{color:#fafaf8;font-size:14px}main{max-width:940px;margin:30px auto;background:white;padding:48px;border:1px solid #dce3d9;border-radius:18px}h1{font-size:38px;line-height:1.15;margin-top:0;letter-spacing:-1px}h2{font-size:25px;line-height:1.3;margin-top:38px;padding-top:14px;border-top:1px solid #e4e9e1}h3{font-size:20px}a{color:#316847;text-underline-offset:3px}li{margin:8px 0}p{margin:15px 0}code{font-size:.86em;background:#f0f3ed;padding:2px 5px;border-radius:4px;overflow-wrap:anywhere}pre{padding:16px;background:#f0f3ed;border-radius:8px;overflow:auto}pre code{padding:0}table{border-collapse:collapse;display:block;overflow:auto;font-size:14px}td,th{border:1px solid #dce3d9;padding:10px;min-width:140px;text-align:left}th{background:#eef2ea}img{max-width:100%;height:auto}blockquote{border-left:4px solid #b99450;padding-left:18px;margin-left:0}footer{max-width:940px;margin:0 auto 40px;padding:0 24px;font-size:13px;color:#5b6b61}@media(max-width:650px){main{margin:14px;padding:25px}h1{font-size:30px}body{font-size:16px}}@media print{body,main{background:white}header,nav,footer{display:none}main{border:0;padding:0;max-width:none}h2{break-after:avoid}a{color:inherit}}
+  </style></head><body><header><strong>∞ impian</strong><small>I'm the possibility of my dream</small><nav><a href="USER-GUIDE.html">User guide</a><a href="FAQ.html">FAQ</a><a href="START-HERE.html">Start here</a><a href="CONNECTION-SETUP.html">Connection setup</a></nav></header><main><h1>Windows verification</h1>
+<p>Automated checks: <code>scripts/Test.ps1</code>. Render smoke test: <code>scripts/Verify-Windows.ps1 -Portable</code>. The latter launches an isolated demo workspace, renders actual WPF controls in 13 views to PNG and exits. These are WPF render captures; 150% capture changes render density, not the host&#39;s OS scaling. The running native calendar was also inspected through Windows UI Automation during development.</p>
+<p>Interactive checks remaining for a release candidate:</p>
+<ol>
+<li><p>Start the portable executable without .NET on PATH. Create a goal/action, restart, verify IDs and data survive. Open a second instance and confirm the workspace guard.</p>
+</li>
+<li><p>In Calendar test Day, Week, Work Week, Month, Agenda. Create all-day and overlapping provider fixture events. Verify colours, visibility independent of busy selection, details/account labels and search. Resize the window; collapse panels. Use keyboard Tab/Enter and Ctrl+N. Verify long titles are accessible in details.</p>
+</li>
+<li><p>Change Windows display scaling to 125%, 150%, 200% yourself; move between monitors. Check light and dark contrast and dialogs. Do not infer this from a successful build.</p>
+</li>
+<li><p>Plan a season manually; navigate backwards, close/reopen the draft, revise goals and commitment. Confirm; verify no invented dates or progress. Carry only selected unfinished goals into the next season and verify linked tasks retain IDs.</p>
+</li>
+<li><p>In a separate demo, make a task exceed capacity, add a hidden busy calendar and prerequisite cycle. Preview then change busy time before Apply. Confirm rejection instead of overlap. Verify task duration is never silently shortened.</p>
+</li>
+<li><p>With test-only Google and Outlook calendars, follow CALENDARS.md. Connect both read-only; toggle displayed/busy calendars independently. Enable writes for a selected account. Publish one block, drop the network after server acceptance, restart and verify exactly one remote event. Edit remotely; sync. Delete remotely; sync. Make concurrent changes; inspect both versions and resolve. Do not use meetings with real attendees for tests.</p>
+</li>
+<li><p>Run focus, pause/resume, suspend Windows and restart Impian. Compare recorded active seconds, pauses and interruptions. Finish with task unfinished, then with explicitly completed task. Outcome progress must remain separately recorded.</p>
+</li>
+<li><p>Test local audio selection, volume, mute, stop and supported file codecs. No playback before explicit Play.</p>
+</li>
+<li><p>Install the extension only in a consenting test browser profile. Check a selected domain and subdomain during focus; unrelated domains should load. End/pause/abandon, close/crash Impian, restart browser and sleep/resume. Verify cleanup or use popup emergency exit. Check already-open pages against the documented navigation-only scope.</p>
+</li>
+<li><p>Supply your own API key; test AI confirmation, cancellation, missing/wrong key and validation failures. Authorize a short English clip, a Bahasa Melayu clip, and a mixed clip. Review transcripts before inserting. Remove the key and verify the planner remains usable.</p>
+</li>
+<li><p>Trigger 15/2 minute reminders; restart before a duplicate trigger; resume after a stale trigger. Check Windows notification policy. Test optional tray exit and startup, then disable startup if undesired.</p>
+</li>
+<li><p>Export/import and backup/restore. Confirm pre-import backup, goal/task/block/history IDs, no credentials in exports, and queued writes requiring review after restore.</p>
+</li>
+<li><p>In a disposable test workspace, use a harmless executable with no unsaved data for app enforcement. Check per-session consent, pause/resume, the tray release and Ctrl+Alt+Shift+F12 from another window. Close Impian and verify the executable can launch normally. Do not select real work applications until you accept the documented data-loss mechanism.</p>
+</li>
+<li><p>With connected test calendars, move one Impian-created block, synchronize, then Undo and inspect the compensating preview. Make an external edit before publication and confirm a conflict. Undo a published deletion and verify exactly one replacement, with a new event identity. Cancel a preview and verify nothing changes.</p>
+</li>
+<li><p>Edit a habit, pause and resume it; completed and scheduled occurrences should retain titles/history while future unscheduled instances update. Choose Saturday as the only working day and verify Work Week and scheduling. Replan flexible local blocks and verify the move/removal list before applying. Restore an archived action and customize reminder offsets.</p>
+</li>
+<li><p>Check all eleven colour themes, restart persistence and Reset to sage green. Open User guide and FAQ from Settings.</p>
+</li>
+<li><p>Configure a consenting test authentication service, then verify Google, Apple, email signup/confirmation/sign-in and password recovery. Check wrong passwords, expired sessions, local sign-out and unavailable-network messages. Do not publish server secrets.</p>
+</li>
+<li><p>Follow CONNECTION-SETUP.md to test ChatGPT first registration, reconnect, token rotation, permitted models, actual planning, identity-only consent, cancellation and sign-out. Confirm ChatGPT mode never falls back to API-key billing.</p>
+</li>
+<li><p>Connect a test Google backup account, create/list/download/restore a backup, test offline failure, weekly/monthly catch-up, and moving the executable folder. Confirm credentials are absent and restore requires confirmation. The isolated scheduler-only script is scripts/Verify-BackupTask.ps1; it registers and removes a test task without uploading data.</p>
+</li>
+</ol>
+</main><footer>Impian 0.3.0 · Windows desktop · Your data, your pace.</footer></body></html>

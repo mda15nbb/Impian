@@ -1,0 +1,58 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Impian FAQ</title><style>
+  :root{color-scheme:light}*{box-sizing:border-box}body{margin:0;background:#f5f7f2;color:#293b32;font:17px/1.7 "Segoe UI",system-ui,sans-serif}header{background:#293b32;color:#fafaf8;padding:24px max(24px,calc((100vw - 940px)/2))}header strong{font-size:28px;letter-spacing:-1px}header small{display:block;color:#e0e8dc}nav{margin-top:14px;display:flex;gap:20px;flex-wrap:wrap}nav a{color:#fafaf8;font-size:14px}main{max-width:940px;margin:30px auto;background:white;padding:48px;border:1px solid #dce3d9;border-radius:18px}h1{font-size:38px;line-height:1.15;margin-top:0;letter-spacing:-1px}h2{font-size:25px;line-height:1.3;margin-top:38px;padding-top:14px;border-top:1px solid #e4e9e1}h3{font-size:20px}a{color:#316847;text-underline-offset:3px}li{margin:8px 0}p{margin:15px 0}code{font-size:.86em;background:#f0f3ed;padding:2px 5px;border-radius:4px;overflow-wrap:anywhere}pre{padding:16px;background:#f0f3ed;border-radius:8px;overflow:auto}pre code{padding:0}table{border-collapse:collapse;display:block;overflow:auto;font-size:14px}td,th{border:1px solid #dce3d9;padding:10px;min-width:140px;text-align:left}th{background:#eef2ea}img{max-width:100%;height:auto}blockquote{border-left:4px solid #b99450;padding-left:18px;margin-left:0}footer{max-width:940px;margin:0 auto 40px;padding:0 24px;font-size:13px;color:#5b6b61}@media(max-width:650px){main{margin:14px;padding:25px}h1{font-size:30px}body{font-size:16px}}@media print{body,main{background:white}header,nav,footer{display:none}main{border:0;padding:0;max-width:none}h2{break-after:avoid}a{color:inherit}}
+  </style></head><body><header><strong>∞ impian</strong><small>I'm the possibility of my dream</small><nav><a href="USER-GUIDE.html">User guide</a><a href="FAQ.html">FAQ</a><a href="START-HERE.html">Start here</a><a href="CONNECTION-SETUP.html">Connection setup</a></nav></header><main><h1>Impian FAQ</h1>
+<p>Version 0.3.0 · Updated 11 October 2026</p>
+<h2>Do I need an account to use Impian?</h2>
+<p>No. Goals, tasks, the local calendar, focus sessions and reviews work without an account or internet connection.</p>
+<h2>What changed in this release?</h2>
+<p>Logo #8, Steady Progress, replaces the earlier monogram. Sage green remains the default, with ten other themes in Settings. The tagline is <strong>I&#39;m the possibility of my dream</strong>. Account-login adapters, Google Drive backups and ChatGPT sign-in have been added, along with this FAQ and a user guide.</p>
+<h2>Are the online features ready for everyone?</h2>
+<p>Not yet. The code, settings and local tests are in place. Google, Apple and email login still need the app owner&#39;s authentication-service setup. Google Drive needs a Google registration. Live sign-ins, backup uploads and AI responses must be tested with real consenting accounts before treating this as a fully verified public release.</p>
+<h2>Which colours can I choose?</h2>
+<p>Sage green, Electric Iris, Cobalt &amp; Coral, Tropical Spark, Tangerine Sunset, Midnight Pop, Dusty Lilac, Soft Slate Blue, Terracotta &amp; Cream, Dusty Rose, and Honey &amp; Oat. Your selection is saved. Midnight Pop is always dark; the other themes support the dark-appearance option.</p>
+<h2>Why are Google, Apple or email login buttons unavailable?</h2>
+<p>The app owner has not completed account-service setup, or you are using the demo workspace. This cannot be fixed by entering your Google or Apple password into the email-password form. Use the matching sign-in button after setup is complete.</p>
+<h2>Does signing in make all my data appear on another computer?</h2>
+<p>No. This release keeps one local planner per Windows user. Account login identifies you but does not provide live cloud synchronisation or separate in-app profiles. You can connect Google Drive on another computer and deliberately restore a backup.</p>
+<h2>Can I use my own ChatGPT account?</h2>
+<p>The app includes <strong>Continue with ChatGPT</strong>. OpenAI must allow your account and this integration to use your plan. Choose an available model and run the test in Settings. Your existing subscription limits still apply; the connection is not a promise of unlimited use.</p>
+<h2>Can Impian see my old ChatGPT conversations?</h2>
+<p>No. This sign-in integration does not give Impian access to your existing ChatGPT conversations. Impian sends the text you submit for its planning request.</p>
+<h2>Can I ask the AI to do anything in Impian?</h2>
+<p>Not in this release. AI helps clarify a season and suggest goals and next actions. You review those suggestions. A general chat assistant that independently changes tasks, calendars or other applications has not been built.</p>
+<h2>Will AI cost extra?</h2>
+<p>In ChatGPT-account mode, eligible text requests use your permitted ChatGPT plan usage or credits under OpenAI&#39;s terms and limits. In API-key mode, your own OpenAI API billing applies. Impian does not silently fall back from one to the other.</p>
+<h2>Can I use my ChatGPT account for voice transcription?</h2>
+<p>The current sign-in route does not support the transcription API. You can type instead. Voice transcription requires choosing API-key mode and supplying your own key. Review the transcript before inserting it.</p>
+<h2>Where do Google backups go?</h2>
+<p>To Impian&#39;s private app-data area in the Google Drive account you select. It is hidden from the ordinary Drive file list. Use <strong>Browse / restore backups</strong> inside Impian to see or download your copies. It is separate from Google&#39;s phone/device-backup area.</p>
+<h2>Does Google login also connect Google backup or Google Calendar?</h2>
+<p>No. These are separate permissions. Connect each service you want to use in its own Settings section.</p>
+<h2>What does weekly or monthly mean?</h2>
+<p>Weekly means seven days after the last successful backup. Monthly means one calendar month after it, including shorter month-end dates. A successful manual backup also starts that interval again.</p>
+<h2>Will backups run when the app is closed?</h2>
+<p>Only if you enable the closed-app option and save it. Windows then checks the schedule daily while you are signed in. Your computer needs to be on and online. If you move the app folder, save the schedule again. Without that option, automatic backups run when Impian is open, including in its tray mode.</p>
+<h2>Does a failed backup delete my previous copy?</h2>
+<p>No. A new successful backup creates another copy. A failure keeps the previous successful record and shows an error. Automatic retries are delayed so the app does not continually send requests.</p>
+<h2>What happens when I restore?</h2>
+<p>The selected backup replaces the current planner after you confirm. Impian first saves the current database as <strong>before-import.db</strong>. Calendar writes need review and application blocking is disabled. Login credentials are not included in the backup, so you may need to reconnect services.</p>
+<h2>Are passwords or tokens in my backup?</h2>
+<p>No. They are stored separately using Windows protection. Planner backups do include your goals, notes, calendar information, history and ordinary planner settings. Treat downloaded backups as private documents.</p>
+<h2>Are backups encrypted with a password only I know?</h2>
+<p>No. Impian does not add its own password encryption to the planner database or cloud backup file. Google controls access to your Drive account. Someone who obtains a downloaded backup can read its planner content.</p>
+<h2>How long are cloud copies kept?</h2>
+<p>This release retains them and lists the newest 100. It does not automatically prune old copies. Storage counts against your Google account. Disconnecting inside Impian keeps existing backups. Removing Impian&#39;s application data through Google can delete those copies.</p>
+<h2>Can two people share the same Windows account?</h2>
+<p>They would share the same local planner. Use separate Windows accounts for separate private workspaces. Google, Apple or email sign-in does not create isolated planners in this release.</p>
+<h2>Does signing out disconnect everything?</h2>
+<p>No. Impian account login, ChatGPT, backup storage and calendars are separate connections. Sign out or disconnect in each relevant section. Some provider permissions can also be revoked from that provider&#39;s account settings.</p>
+<h2>What if AI or the internet is unavailable?</h2>
+<p>Keep using the local planner. Your draft stays available. Reconnect the affected service or retry later. An incomplete AI response is not treated as a confirmed plan.</p>
+<h2>Is this a signed Microsoft Store application?</h2>
+<p>No. The current delivery is an unsigned portable Windows ZIP. Only download it from the app owner&#39;s trusted link and keep its extracted files together.</p>
+<h2>What is GitHub, and do I need it to use Impian?</h2>
+<p>GitHub is a website where a project can keep documents, updates and downloadable releases. You do not need to understand programming to read a public guide there. You do not need a GitHub account to use Impian or read public documentation.</p>
+<h2>What will be shared publicly?</h2>
+<p>The prepared documentation package contains the user guide, FAQ, setup information. Personal planner databases, backups, credentials and test-account data are excluded. Publishing the documents is separate from publishing the Windows app or its source code.</p>
+<p>For step-by-step instructions, read the <a href="USER-GUIDE.html">user guide</a>.</p>
+</main><footer>Impian 0.3.0 · Windows desktop · Your data, your pace.</footer></body></html>

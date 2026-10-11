@@ -1,0 +1,43 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Known limitations and external verification blockers</title><style>
+  :root{color-scheme:light}*{box-sizing:border-box}body{margin:0;background:#f5f7f2;color:#293b32;font:17px/1.7 "Segoe UI",system-ui,sans-serif}header{background:#293b32;color:#fafaf8;padding:24px max(24px,calc((100vw - 940px)/2))}header strong{font-size:28px;letter-spacing:-1px}header small{display:block;color:#e0e8dc}nav{margin-top:14px;display:flex;gap:20px;flex-wrap:wrap}nav a{color:#fafaf8;font-size:14px}main{max-width:940px;margin:30px auto;background:white;padding:48px;border:1px solid #dce3d9;border-radius:18px}h1{font-size:38px;line-height:1.15;margin-top:0;letter-spacing:-1px}h2{font-size:25px;line-height:1.3;margin-top:38px;padding-top:14px;border-top:1px solid #e4e9e1}h3{font-size:20px}a{color:#316847;text-underline-offset:3px}li{margin:8px 0}p{margin:15px 0}code{font-size:.86em;background:#f0f3ed;padding:2px 5px;border-radius:4px;overflow-wrap:anywhere}pre{padding:16px;background:#f0f3ed;border-radius:8px;overflow:auto}pre code{padding:0}table{border-collapse:collapse;display:block;overflow:auto;font-size:14px}td,th{border:1px solid #dce3d9;padding:10px;min-width:140px;text-align:left}th{background:#eef2ea}img{max-width:100%;height:auto}blockquote{border-left:4px solid #b99450;padding-left:18px;margin-left:0}footer{max-width:940px;margin:0 auto 40px;padding:0 24px;font-size:13px;color:#5b6b61}@media(max-width:650px){main{margin:14px;padding:25px}h1{font-size:30px}body{font-size:16px}}@media print{body,main{background:white}header,nav,footer{display:none}main{border:0;padding:0;max-width:none}h2{break-after:avoid}a{color:inherit}}
+  </style></head><body><header><strong>∞ impian</strong><small>I'm the possibility of my dream</small><nav><a href="USER-GUIDE.html">User guide</a><a href="FAQ.html">FAQ</a><a href="START-HERE.html">Start here</a><a href="CONNECTION-SETUP.html">Connection setup</a></nav></header><main><h1>Known limitations and external verification blockers</h1>
+<p>This is an expanded functioning desktop release, <strong>not completion of every acceptance criterion</strong>. The following are explicit implementation gaps or verification gaps, rather than simulated features.</p>
+<h2>External verification blockers</h2>
+<ul>
+<li><p>Impian login: Google, Apple and email flows are implemented against Supabase Auth. The app owner requested integration first and service setup later. The service, email sender, provider registrations and hosted recovery page are not configured. Real sign-in is pending.</p>
+</li>
+<li><p>ChatGPT: official account sign-in and text inference are implemented and fixture-tested. Live consent, account eligibility, model access and renewal remain unverified. ChatGPT mode does not transcribe audio or import chat history.</p>
+</li>
+<li><p>Google backups: upload, list, download, validation, restore and manual/weekly/monthly scheduling are implemented. Windows task creation/removal passed. Actual Google consent and upload/restore still need the app&#39;s OAuth registration and a consenting account.</p>
+</li>
+<li><p>Google: no desktop OAuth registration or consenting test account was supplied. Code and fixture tests cover OAuth structure, pagination, retry IDs, incremental tokens, mappings and conflicts; real account sign-in, refresh, recurring exceptions and two-way sync are unverified.</p>
+</li>
+<li><p>Outlook: no public-client registration, personal account or Microsoft 365 consent was supplied. Real MSAL and stable Graph adapters are implemented, but actual tenant policy, token renewal and live delta behaviour are unverified.</p>
+</li>
+<li><p>AI/voice: no OpenAI API key or authorised microphone recording was supplied. Real API implementation and local validation tests exist. Live model response, quota errors and English/Bahasa Melayu/mixed-language transcription require testing.</p>
+</li>
+<li><p>Browser blocker: no companion was installed into a user&#39;s browser profile. Rule logic has tests; actual Chrome/Edge blocking and crash/sleep cleanup are unverified.</p>
+</li>
+<li><p>Signing: no code-signing certificate supplied. The portable build is unsigned.</p>
+</li>
+</ul>
+<h2>Implementation gaps</h2>
+<ul>
+<li>Windows app enforcement closes selected exact-path processes after per-session consent. It cannot prevent the first instant of a launch or close every protected/elevated process. Unsaved work can be lost after consent. The disposable-helper test passes; third-party app compatibility and global-hotkey interaction still need acceptance testing.</li>
+<li>Imported events start read-only. Individual appointments without attendees or recurrence can be explicitly enabled for editing with write permission. Meetings and recurring series remain read-only; imported-event deletion has no UI. Live editing permission transitions still require account testing.</li>
+<li>Undo now stages provider compensation and preserves unrelated entities, focus and history. It is session-local and covers checkpointed goal/task/habit/calendar actions. Provider conflicts block publication. Undo of an already-published deletion creates a new event identity. Live provider verification remains outstanding.</li>
+<li>Week suggestions can replan explicitly flexible, future local task blocks. Fixed, imported and published blocks remain in place. The deterministic greedy planner is not a global optimizer. Working days are configurable; there is one daily break, and additional unavailable periods use busy blocks.</li>
+<li>Overlapping blocks have separate lanes and details in tooltips/editors; narrow week columns truncate long titles. The all-day header now shows all entries within a scrollable area.</li>
+<li>Habits have a series editor and pause/resume with reversible suppression of future unstarted, unscheduled occurrences. Completed, scheduled and previously focused occurrences are retained. Generation covers the next 28 days when edited and 14 days on launch.</li>
+<li>Coaching covers underserved goals, repeated deferrals, goal-scoped short-action batching and overload. It does not infer time-of-day productivity or provide general AI coach chat.</li>
+<li>Plan Strength uses disclosed weak proxies for text clarity and capacity. Focus quality is a self-report plus timer/pause evidence, not a composite proprietary score.</li>
+<li>Meeting notes support pasted text and UTF-8 <code>.txt</code> / <code>.md</code>. Deterministic extraction recognises Action/TODO/checkbox and Decision markers plus explicit ISO dates. No PDF/DOCX parser, semantic extraction or live Fathom/Granola/Slack connector.</li>
+<li>Local Disconnect removes the selected account token/cache entry, pauses its queue and retains cached events. Provider-side OAuth consent revocation remains a provider-account action.</li>
+<li>SQLite persists a full JSON aggregate transactionally. Large histories/calendars may need a normalized model and background write batching for scale. Text field draft saving currently occurs on each edit.</li>
+<li>Focus recovery deliberately excludes unobserved gaps over 30 seconds and may lose up to five seconds after a crash. Countdown reaching zero does not auto-finish.</li>
+<li>Reminders use tray balloons. Live notification policy, start-at-login, sleep/resume, audio devices and physical microphone behaviour were not comprehensively exercised.</li>
+<li>UI screenshots cover all eleven colour themes, light/dark appearance, all views, compact width and 150% render density. Physical Windows multi-monitor DPI switching and comprehensive screen-reader testing remain manual.</li>
+</ul>
+<h2>Safety boundaries</h2>
+<p>No calendar cross-copying. No imported meeting cancellation, attendee mutation, invitation sending or response change. No API keys/tokens in exports. No silent remote overwrites. A changed server version halts publication. Calendar sync does not run while closed. Optional backup-only scheduling can run while the user is signed into Windows; this is not background calendar sync. No telemetry or browsing-content observation. The SQLite database itself is unencrypted.</p>
+</main><footer>Impian 0.3.0 · Windows desktop · Your data, your pace.</footer></body></html>

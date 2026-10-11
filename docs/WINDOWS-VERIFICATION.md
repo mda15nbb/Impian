@@ -1,0 +1,27 @@
+# Windows verification
+
+Automated checks: `scripts/Test.ps1`. Render smoke test: `scripts/Verify-Windows.ps1 -Portable`. The latter launches an isolated demo workspace, renders actual WPF controls in 13 views to PNG and exits. These are WPF render captures; 150% capture changes render density, not the host's OS scaling. The running native calendar was also inspected through Windows UI Automation during development.
+
+Interactive checks remaining for a release candidate:
+
+1. Start the portable executable without .NET on PATH. Create a goal/action, restart, verify IDs and data survive. Open a second instance and confirm the workspace guard.
+2. In Calendar test Day, Week, Work Week, Month, Agenda. Create all-day and overlapping provider fixture events. Verify colours, visibility independent of busy selection, details/account labels and search. Resize the window; collapse panels. Use keyboard Tab/Enter and Ctrl+N. Verify long titles are accessible in details.
+3. Change Windows display scaling to 125%, 150%, 200% yourself; move between monitors. Check light and dark contrast and dialogs. Do not infer this from a successful build.
+4. Plan a season manually; navigate backwards, close/reopen the draft, revise goals and commitment. Confirm; verify no invented dates or progress. Carry only selected unfinished goals into the next season and verify linked tasks retain IDs.
+5. In a separate demo, make a task exceed capacity, add a hidden busy calendar and prerequisite cycle. Preview then change busy time before Apply. Confirm rejection instead of overlap. Verify task duration is never silently shortened.
+6. With test-only Google and Outlook calendars, follow CALENDARS.md. Connect both read-only; toggle displayed/busy calendars independently. Enable writes for a selected account. Publish one block, drop the network after server acceptance, restart and verify exactly one remote event. Edit remotely; sync. Delete remotely; sync. Make concurrent changes; inspect both versions and resolve. Do not use meetings with real attendees for tests.
+7. Run focus, pause/resume, suspend Windows and restart Impian. Compare recorded active seconds, pauses and interruptions. Finish with task unfinished, then with explicitly completed task. Outcome progress must remain separately recorded.
+8. Test local audio selection, volume, mute, stop and supported file codecs. No playback before explicit Play.
+9. Install the extension only in a consenting test browser profile. Check a selected domain and subdomain during focus; unrelated domains should load. End/pause/abandon, close/crash Impian, restart browser and sleep/resume. Verify cleanup or use popup emergency exit. Check already-open pages against the documented navigation-only scope.
+10. Supply your own API key; test AI confirmation, cancellation, missing/wrong key and validation failures. Authorize a short English clip, a Bahasa Melayu clip, and a mixed clip. Review transcripts before inserting. Remove the key and verify the planner remains usable.
+11. Trigger 15/2 minute reminders; restart before a duplicate trigger; resume after a stale trigger. Check Windows notification policy. Test optional tray exit and startup, then disable startup if undesired.
+12. Export/import and backup/restore. Confirm pre-import backup, goal/task/block/history IDs, no credentials in exports, and queued writes requiring review after restore.
+
+13. In a disposable test workspace, use a harmless executable with no unsaved data for app enforcement. Check per-session consent, pause/resume, the tray release and Ctrl+Alt+Shift+F12 from another window. Close Impian and verify the executable can launch normally. Do not select real work applications until you accept the documented data-loss mechanism.
+14. With connected test calendars, move one Impian-created block, synchronize, then Undo and inspect the compensating preview. Make an external edit before publication and confirm a conflict. Undo a published deletion and verify exactly one replacement, with a new event identity. Cancel a preview and verify nothing changes.
+15. Edit a habit, pause and resume it; completed and scheduled occurrences should retain titles/history while future unscheduled instances update. Choose Saturday as the only working day and verify Work Week and scheduling. Replan flexible local blocks and verify the move/removal list before applying. Restore an archived action and customize reminder offsets.
+
+16. Check all eleven colour themes, restart persistence and Reset to sage green. Open User guide and FAQ from Settings.
+17. Configure a consenting test authentication service, then verify Google, Apple, email signup/confirmation/sign-in and password recovery. Check wrong passwords, expired sessions, local sign-out and unavailable-network messages. Do not publish server secrets.
+18. Follow CONNECTION-SETUP.md to test ChatGPT first registration, reconnect, token rotation, permitted models, actual planning, identity-only consent, cancellation and sign-out. Confirm ChatGPT mode never falls back to API-key billing.
+19. Connect a test Google backup account, create/list/download/restore a backup, test offline failure, weekly/monthly catch-up, and moving the executable folder. Confirm credentials are absent and restore requires confirmation. The isolated scheduler-only script is scripts/Verify-BackupTask.ps1; it registers and removes a test task without uploading data.

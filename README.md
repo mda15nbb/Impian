@@ -1,2 +1,32 @@
 # Impian
-Impian Windows planner — user guide, FAQ and setup documentation. I'm the possibility of my dream
+
+**I'm the possibility of my dream**
+
+Impian is a Windows desktop planner for turning dreams into goals, small actions and time in your calendar.
+
+## Start here
+
+- **[Read the user guide](docs/USER-GUIDE.md)** — everyday instructions in plain English.
+- **[Read the FAQ](docs/FAQ.md)** — accounts, AI, colours, backups and privacy.
+- **[See what still needs setup](docs/KNOWN-LIMITATIONS.md)** — an honest account of the remaining work.
+- **[App-owner connection setup](docs/CONNECTION-SETUP.md)** — instructions for the person configuring online services.
+
+You can read these pages without a GitHub account. To share the guide, copy this page's address and send it to someone. A repository is simply the project's folder on GitHub. The downloadable HTML copies also work offline in a browser.
+
+## Version 0.3.0
+
+- Logo **08 — Steady Progress**, the infinity-shaped mark with a gold dot.
+- Sage green by default, with all ten additional colour choices.
+- Google, Apple and email login integration, awaiting app-owner service configuration.
+- ChatGPT account integration for eligible text planning, with a separate optional API-key mode.
+- Google Drive backup and restore using the user's own account, with manual, weekly or monthly schedules and optional Windows scheduling while the app is closed.
+
+Local planning works without signing in. Account login does not provide continuous cloud sync or separate local profiles. AI helps with season questions, goals and actions; it is not a general command assistant.
+
+**Verification:** 99 application tests and 14 extension assertions pass. All eleven palettes were rendered in the Windows app. Windows backup-task creation and removal passed. Live provider sign-ins, Google backup transfers and ChatGPT responses still require consenting account tests. The current Windows build is unsigned. This is not a claim that every external integration is production-verified.
+
+## What is public here?
+
+This folder contains documentation and public setup templates. It does not contain personal planner data, passwords, sign-in tokens or backups. The Windows download and complete app source are separate deliveries; this documentation upload does not publish them.
+
+The exact tagline is **I'm the possibility of my dream**.

@@ -1,0 +1,62 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Explainable Impian equivalents</title><style>
+  :root{color-scheme:light}*{box-sizing:border-box}body{margin:0;background:#f5f7f2;color:#293b32;font:17px/1.7 "Segoe UI",system-ui,sans-serif}header{background:#293b32;color:#fafaf8;padding:24px max(24px,calc((100vw - 940px)/2))}header strong{font-size:28px;letter-spacing:-1px}header small{display:block;color:#e0e8dc}nav{margin-top:14px;display:flex;gap:20px;flex-wrap:wrap}nav a{color:#fafaf8;font-size:14px}main{max-width:940px;margin:30px auto;background:white;padding:48px;border:1px solid #dce3d9;border-radius:18px}h1{font-size:38px;line-height:1.15;margin-top:0;letter-spacing:-1px}h2{font-size:25px;line-height:1.3;margin-top:38px;padding-top:14px;border-top:1px solid #e4e9e1}h3{font-size:20px}a{color:#316847;text-underline-offset:3px}li{margin:8px 0}p{margin:15px 0}code{font-size:.86em;background:#f0f3ed;padding:2px 5px;border-radius:4px;overflow-wrap:anywhere}pre{padding:16px;background:#f0f3ed;border-radius:8px;overflow:auto}pre code{padding:0}table{border-collapse:collapse;display:block;overflow:auto;font-size:14px}td,th{border:1px solid #dce3d9;padding:10px;min-width:140px;text-align:left}th{background:#eef2ea}img{max-width:100%;height:auto}blockquote{border-left:4px solid #b99450;padding-left:18px;margin-left:0}footer{max-width:940px;margin:0 auto 40px;padding:0 24px;font-size:13px;color:#5b6b61}@media(max-width:650px){main{margin:14px;padding:25px}h1{font-size:30px}body{font-size:16px}}@media print{body,main{background:white}header,nav,footer{display:none}main{border:0;padding:0;max-width:none}h2{break-after:avoid}a{color:inherit}}
+  </style></head><body><header><strong>∞ impian</strong><small>I'm the possibility of my dream</small><nav><a href="USER-GUIDE.html">User guide</a><a href="FAQ.html">FAQ</a><a href="START-HERE.html">Start here</a><a href="CONNECTION-SETUP.html">Connection setup</a></nav></header><main><h1>Explainable Impian equivalents</h1>
+<h2>Scheduling</h2>
+<p>Tasks sort by priority (1 first), due date, then stable ID. Pending prerequisites are planned first. Missing dependencies and cycles are surfaced. A dependent task begins only after all unfinished prerequisites have sufficient scheduled duration. Habits cannot run before their occurrence date. Suggestions use the selected working days (default Monday–Friday); week start controls grouping.</p>
+<p>The planner enumerates snapped times inside working hours and outside the configured daily break. Hidden calendars still count when their busy toggle is enabled. Each existing busy event gets the configured buffer on both sides. Task minutes per day cannot exceed the limit. Durations are never silently shortened. Splitting is opt-in, using up to 60-minute chunks; if the whole task cannot fit, none of its new chunks is proposed. Past deadlines yield an explicit unscheduled reason.</p>
+<p>Preview reports available and requested hours, additions, and all unplaced tasks. Applying rechecks overlaps against current local data. Opt-in replanning may move or remove future blocks explicitly marked flexible and stored locally, with all changes listed before Apply. Fixed, imported and published time stays in place. Applying rejects stale task, calendar or availability inputs as well as new overlaps. Manual block dragging opens a reviewable editor rather than immediately committing a move. All-day end dates are exclusive. Ambiguous/nonexistent DST wall times are rejected for manual local creation; provider events retain absolute instants.</p>
+<h2>Plan Strength</h2>
+<p>The score is a heuristic, <strong>not a probability of success</strong> and not Superfocus&#39;s undisclosed formula. Per goal:</p>
+<table>
+<thead>
+<tr>
+<th>Component</th>
+<th align="right">Maximum</th>
+<th>Rule</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Outcome clarity</td>
+<td align="right">15</td>
+<td>Description at least 20 characters; a deliberately weak proxy, disclosed in UI</td>
+</tr>
+<tr>
+<td>Success measure</td>
+<td align="right">20</td>
+<td>Nonblank user-entered success measure</td>
+</tr>
+<tr>
+<td>Next actions</td>
+<td align="right">15</td>
+<td>At least one open action</td>
+</tr>
+<tr>
+<td>Capacity</td>
+<td align="right">15</td>
+<td>All goal actions fit in the current week&#39;s deterministic proposal</td>
+</tr>
+<tr>
+<td>Protected time</td>
+<td align="right">20</td>
+<td>min(20, floor(20 × upcoming scheduled minutes / open action estimates)); zero when no requested time</td>
+</tr>
+<tr>
+<td>Prerequisites</td>
+<td align="right">10</td>
+<td>At least one open action and every listed prerequisite completed</td>
+</tr>
+<tr>
+<td>Conflicts</td>
+<td align="right">5</td>
+<td>Some future protected time and no overlaps with selected busy calendars</td>
+</tr>
+</tbody></table>
+<p>Each point contribution is shown with its evidence. Outcome progress is explicitly entered by the user; action completion does not imply outcome achievement. Scheduled hours and recorded session hours are displayed separately. Goal trajectory predictions are not fabricated.</p>
+<h2>Coaching</h2>
+<p>Rules currently surface goals with open actions but no future protected minutes, and goals whose open actions have at least three recorded moves. The suggestion quotes counts from history, and never invents a best-performing time of day. Preview opens the deterministic schedule. Edit changes the goal or availability; Dismiss persists the advice identity. Additional rules identify three or more unscheduled actions of at most 30 minutes for one goal, and requests exceeding the remaining weekly capacity. Goal-scoped previews group related actions while retaining buffers and deadlines; deferral previews may replan flexible local time. No statistical productivity-hour inference is made.</p>
+<h2>Focus timing and quality</h2>
+<p>Every one-second heartbeat accumulates wall-clock elapsed time only when the gap is at most 30 seconds. Longer gaps trigger a pause and do not count sleep/unobserved time. State is persisted every five heartbeats. Restart recovers unfinished sessions as paused; at most the unsaved heartbeat interval may be lost in a crash. Paused observed time is recorded separately. Countdown expiry does not automatically mark a task complete; a session can continue beyond its planned duration.</p>
+<p>Quality feedback is the optional 1–5 <strong>user-reported rating</strong>, plus active session time, pause time and interruption count. There is no composite productivity percentage and no activity monitoring. Absence of a rating is labelled Insufficient data. Timer runtime is never described as productive work.</p>
+<h2>Reminders</h2>
+<p>Local reminders use <code>(block ID, start instant, offset)</code> deduplication persisted in SQLite. A notification is eligible only during the 30 seconds after its trigger and before the block begins. This avoids stale bursts after sleep. Notifications use Windows tray balloons; OS notification settings may suppress them. Provider reminder configuration is untouched.</p>
+</main><footer>Impian 0.3.0 · Windows desktop · Your data, your pace.</footer></body></html>

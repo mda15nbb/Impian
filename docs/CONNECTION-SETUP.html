@@ -1,0 +1,58 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Connection setup for the app owner</title><style>
+  :root{color-scheme:light}*{box-sizing:border-box}body{margin:0;background:#f5f7f2;color:#293b32;font:17px/1.7 "Segoe UI",system-ui,sans-serif}header{background:#293b32;color:#fafaf8;padding:24px max(24px,calc((100vw - 940px)/2))}header strong{font-size:28px;letter-spacing:-1px}header small{display:block;color:#e0e8dc}nav{margin-top:14px;display:flex;gap:20px;flex-wrap:wrap}nav a{color:#fafaf8;font-size:14px}main{max-width:940px;margin:30px auto;background:white;padding:48px;border:1px solid #dce3d9;border-radius:18px}h1{font-size:38px;line-height:1.15;margin-top:0;letter-spacing:-1px}h2{font-size:25px;line-height:1.3;margin-top:38px;padding-top:14px;border-top:1px solid #e4e9e1}h3{font-size:20px}a{color:#316847;text-underline-offset:3px}li{margin:8px 0}p{margin:15px 0}code{font-size:.86em;background:#f0f3ed;padding:2px 5px;border-radius:4px;overflow-wrap:anywhere}pre{padding:16px;background:#f0f3ed;border-radius:8px;overflow:auto}pre code{padding:0}table{border-collapse:collapse;display:block;overflow:auto;font-size:14px}td,th{border:1px solid #dce3d9;padding:10px;min-width:140px;text-align:left}th{background:#eef2ea}img{max-width:100%;height:auto}blockquote{border-left:4px solid #b99450;padding-left:18px;margin-left:0}footer{max-width:940px;margin:0 auto 40px;padding:0 24px;font-size:13px;color:#5b6b61}@media(max-width:650px){main{margin:14px;padding:25px}h1{font-size:30px}body{font-size:16px}}@media print{body,main{background:white}header,nav,footer{display:none}main{border:0;padding:0;max-width:none}h2{break-after:avoid}a{color:inherit}}
+  </style></head><body><header><strong>∞ impian</strong><small>I'm the possibility of my dream</small><nav><a href="USER-GUIDE.html">User guide</a><a href="FAQ.html">FAQ</a><a href="START-HERE.html">Start here</a><a href="CONNECTION-SETUP.html">Connection setup</a></nav></header><main><h1>Connection setup for the app owner</h1>
+<p>Version 0.3.0. The user requested implementation first and service configuration later. No live credentials or registered providers were supplied. Do not describe these connections as live-verified until the acceptance steps below pass.</p>
+<h2>What users should see</h2>
+<p>End users choose Google, Apple or email login; they should not need to create developer accounts. The owner completes this one-time setup and distributes the configured app. Impian remains usable offline before setup.</p>
+<h2>Google, Apple and email accounts</h2>
+<p>Impian uses Supabase Auth as the account service. Only identity and authentication go there; the app does not upload its planner database to Supabase. Sessions are stored with Windows DPAPI. The current planner remains a single workspace per Windows user, not an account-isolated cloud workspace.</p>
+<ol>
+<li>Create a Supabase project you control.</li>
+<li>Enable email/password authentication and email confirmation. Configure a production email sender and appropriate service rate limits before public distribution.</li>
+<li>Enable Google in Supabase and configure its web OAuth client. Use the provider callback URL shown by Supabase.</li>
+<li>Enable Apple with your Apple Developer configuration, Services ID and required server-side credentials. Keep Apple private keys and provider secrets on the server. Follow Apple&#39;s and Supabase&#39;s current renewal requirements.</li>
+<li>Add <code>http://127.0.0.1:42817/auth/**</code> to the Supabase redirect allowlist. This fixed port is for the desktop app. Every attempt uses an unpredictable path and a fresh PKCE challenge. Provider-to-Supabase callbacks remain HTTPS.</li>
+<li>Host the included <code>account-pages</code> folder over HTTPS. Edit its <code>configuration.js</code> with your public Supabase URL and publishable key. Set the project&#39;s Site URL to that page so email verification and password recovery can finish there. Do not use the documentation repository&#39;s file-view URL as a hosted page.</li>
+<li>Copy <code>services.example.json</code> to <code>services.json</code> beside <code>Impian.exe</code>, and enter the public Supabase project URL and publishable key. The desktop client supports publishable keys or legacy anon keys. It rejects service-role and <code>sb_secret_</code> keys.</li>
+<li>Alternatively, configure the values in Settings → Connection setup (app owner). A locally saved override takes precedence over the packaged file. Sign out before changing the authentication service.</li>
+</ol>
+<p>The package must never contain Google web secrets, Apple private keys, Supabase secret/service-role keys, account passwords or live session tokens.</p>
+<h2>Google Drive backups</h2>
+<ol>
+<li>Create or use a Google Cloud project you control and enable the Drive API.</li>
+<li>Configure its OAuth consent screen and an <strong>installed desktop</strong> OAuth client.</li>
+<li>Request <code>openid</code>, <code>email</code> and <code>https://www.googleapis.com/auth/drive.appdata</code>. This grants access to the app&#39;s own hidden data area, not all of a user&#39;s Drive files.</li>
+<li>Put the desktop client ID in <code>GoogleDesktopClientId</code> in the configuration file or owner setup panel. If Google requires your desktop registration&#39;s client secret, enter it in the existing Google registration section; it is protected locally and never exported.</li>
+<li>Review Google&#39;s testing/publishing requirements. OAuth testing-mode grants may expire; a short-lived test grant is not a reliable long-term backup setup.</li>
+<li>Sign in with a consenting test account inside the normal app workspace. Upload a small test backup, list it, download it, and restore into a separate test workspace.</li>
+</ol>
+<p>Backup permission and token storage are separate from Google Calendar permission. Switching backup accounts resets the last-success record. Backup preferences and credentials remain local to the device and are not imported with a planner backup. Cloud files have a versioned JSON envelope with a SHA-256 integrity check. This detects accidental corruption; it is not password encryption or a signature against a malicious file author.</p>
+<p>Automatic schedules run in the open app or through an optional per-user Windows scheduled task. The task uses the current executable path, checks daily at 9 a.m., starts when available, and runs with the current Windows user&#39;s interactive token. It does not store a Windows password or run as administrator. Due dates are seven days or one calendar month after success. Failures wait at least 30 minutes before automatic retries. Files are not automatically pruned.</p>
+<h2>ChatGPT account integration</h2>
+<p>Impian implements the documented dynamic registration flow for eligible open-source/locally hosted clients. It opens OpenAI&#39;s system-browser sign-in, uses PKCE/state/nonce, validates the ID token against OpenAI JWKS, and stores each issued client registration separately. Host identity persists across restarts. Requests use the selected account&#39;s model catalog, streamed Responses with <code>store:false</code>, and no unsupported output-limit field.</p>
+<p>The default AI mode is the user&#39;s ChatGPT account. API-key mode is an explicit separate choice. ChatGPT-account mode never falls back to API billing. Its current supported workload in Impian is structured text season planning. The sign-in route does not support the transcription API.</p>
+<p>Confirm this application&#39;s eligibility for OpenAI&#39;s current program before distribution; documentation describes preview access and account restrictions. Do not reuse another application&#39;s OAuth client ID or extract browser session cookies. No developer API key is required by the documented dynamic sign-in flow, but the user must authorize eligible plan usage.</p>
+<p>Test first registration, repeated sign-in, denied plan permission, refresh, model selection, an actual planning response, cancellation, quota/eligibility errors, switching saved accounts, and sign-out. Remote revocation failure must be shown honestly. Never paste credentials into a support ticket.</p>
+<h2>Acceptance checklist before a public release</h2>
+<ul>
+<li>Google and Apple login return to the desktop and show the verified identity.</li>
+<li>Email signup sends verification; sign-in works after verification; password recovery changes the password.</li>
+<li>Expired and revoked sessions fail clearly and do not invent a successful login.</li>
+<li>Google Drive upload, list, download and restore succeed for the selected account.</li>
+<li>A failed upload preserves the previous successful copy and schedule state.</li>
+<li>Weekly/monthly schedules, Windows task registration, restart, sleep, network loss and moved app folders are checked.</li>
+<li>ChatGPT completes a real response for an eligible account; refusal, incomplete stream and denied plan permission leave drafts unchanged.</li>
+<li>No credentials appear in JSON exports, cloud files, source archives, screenshots or GitHub documents.</li>
+</ul>
+<h2>Official references</h2>
+<ul>
+<li><a href="https://supabase.com/docs/guides/auth/sessions/pkce-flow">Supabase PKCE flow</a></li>
+<li><a href="https://supabase.com/docs/guides/auth/social-login/auth-apple">Supabase Apple sign-in</a></li>
+<li><a href="https://github.com/supabase/auth">Supabase authentication HTTP endpoints</a></li>
+<li><a href="https://developers.google.com/workspace/drive/api/guides/appdata">Google Drive application data</a></li>
+<li><a href="https://developers.openai.com/siwc/token-sharing-open-source/sign-in">OpenAI registration and sign-in</a></li>
+<li><a href="https://developers.openai.com/siwc/token-sharing-open-source/profiles-and-sessions">OpenAI account sessions</a></li>
+<li><a href="https://developers.openai.com/siwc/token-sharing-open-source/models-and-inference">OpenAI models and inference</a></li>
+<li><a href="https://developers.openai.com/siwc/token-sharing-open-source/preview-limitations">OpenAI preview limitations</a></li>
+</ul>
+</main><footer>Impian 0.3.0 · Windows desktop · Your data, your pace.</footer></body></html>
